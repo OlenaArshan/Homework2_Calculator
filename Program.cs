@@ -27,6 +27,14 @@ namespace CurrentValueCalculator_HW2
             double currentValue = sign * nominal * tradePrice;
             Console.WriteLine($"The current value of a deal is: {currentValue}");
 
+            Console.WriteLine("Input the original price of the investment:");
+            userInput = Console.ReadLine();
+            double originalPrice = double.Parse(userInput ?? "0");
+
+            int factor = trcType == TransactionType.Buy ? 0 : 1;
+            double profitLoss = (tradePrice - originalPrice) * nominal * factor;
+            Console.WriteLine($"Profit/loss of the deal is: {profitLoss}");
+
             Console.ReadLine();
         }
     }

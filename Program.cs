@@ -13,15 +13,15 @@ namespace CurrentValueCalculator_HW2
         static void Main(string[] args) {
             Console.WriteLine("Input the nominal of the trade:");
             string userInput = Console.ReadLine();
-            int nominal = int.Parse(userInput ?? "0");
+            int nominal = string.IsNullOrEmpty(userInput) ? 0 : int.Parse(userInput);
 
             Console.WriteLine("Input the trade price of the deal:");
             userInput = Console.ReadLine();
-            double tradePrice = double.Parse(userInput ?? "0");
+            double tradePrice = string.IsNullOrEmpty(userInput) ? 0 : double.Parse(userInput);
 
             Console.WriteLine("Input the transaction type:");
             userInput = Console.ReadLine();
-            TransactionType trcType = (TransactionType)Enum.Parse(typeof(TransactionType), userInput ?? "0", true);
+            TransactionType trcType = string.IsNullOrEmpty(userInput) ? 0 : (TransactionType)Enum.Parse(typeof(TransactionType), userInput, true);
 
             int sign = trcType == TransactionType.Buy ? 1 : -1;
             double currentValue = sign * nominal * tradePrice;
@@ -29,7 +29,7 @@ namespace CurrentValueCalculator_HW2
 
             Console.WriteLine("Input the original price of the investment:");
             userInput = Console.ReadLine();
-            double originalPrice = double.Parse(userInput ?? "0");
+            double originalPrice = string.IsNullOrEmpty(userInput) ? 0 : double.Parse(userInput);
 
             int factor = trcType == TransactionType.Buy ? 0 : 1;
             double profitLoss = (tradePrice - originalPrice) * nominal * factor;
